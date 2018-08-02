@@ -9,7 +9,31 @@
 
 支持全网短信发送，自由扩展，无缝对接。更多请点击[https://www.hongyuvip.com](https://www.hongyuvip.com)
 
-## 系统维护
+## 特点
+
+- 支持全网络短信服务商
+- 支持自由扩展且易维护
+
+## 平台支持
+
+- [阿里云](https://www.aliyun.com)
+- [云片](https://www.yunpian.com)
+- [腾讯](https://cloud.tencent.com/product/sms)
+- [短信宝](http://www.smsbao.com)
+- 其他短信服务商快速集成（参考《宏观设计模式》 --- 鸿宇科技出品）
+
+## 环境需求
+
+- PHP >= 5.3
+
+## 安装
+
+```shell
+$ composer require "hongyukeji/sms"
+```
+
+## 维护
+
 - Author：Shadow
 - QQ：[1527200768](http://wpa.qq.com/msgrd?V=1&uin=1527200768&Menu=yes)
 - Email：[admin@hongyuvip.com](mailto:admin@hongyuvip.com)
