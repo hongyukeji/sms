@@ -24,7 +24,7 @@
 
 ## 环境需求
 
-- PHP >= 5.3
+- PHP >= 5.6.0
 
 ## 安装
 
@@ -38,3 +38,65 @@ $ composer require hongyukeji/sms
 - QQ：[1527200768](http://wpa.qq.com/msgrd?v=3&uin=1527200768&site=qq&menu=yes)
 - Email：[admin@hongyuvip.com](mailto:admin@hongyuvip.com)
 - QQ交流群：[90664526](http://shang.qq.com/wpa/qunwpa?idkey=a3e498d7d3329615c9b3d1dbbbc50e43fa80b39e93a1ae78f1fb0a268f3a0476)
+
+## 配置项
+
+- 阿里云
+
+> 使用说明：templateCode + templateParam
+
+```php
+'aliyun' => [
+    'accessKeyId' => '',
+    'accessKeySecret' => '',
+    'signName' => '',
+    'templateCode' => [
+        // 您的验证码是${code}。有效期为${hour}，请尽快验证！
+        'verificationCode' => '',
+    ],
+],
+```
+
+- 云片
+
+> 使用说明：templateCode + templateParam
+
+```php
+'yunpian' => [
+    'apikey' => '',
+    'templateCode' => [
+        // 您的验证码是#code#。有效期为#hour#，请尽快验证！
+        'verificationCode' => '2414994',
+    ],
+],
+```
+
+- 腾讯云
+
+> 使用说明：templateCode + templateParam
+
+```php
+'qcloud' => [
+    'appid' => '',
+    'appkey' => '',
+    'smsSign' => '',
+    'templateCode' => [
+        'verificationCode' => '',
+    ],
+],
+```
+
+- 短信宝
+
+> 使用说明：Content + templateParam
+
+```php
+'duanxinbao' => [
+    'user' => '',
+    'pass' => '',
+    'signName' => '',
+    'templateCode' => [
+        'verificationCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
+    ],
+],
+```
