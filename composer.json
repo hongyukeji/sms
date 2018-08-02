@@ -1,0 +1,27 @@
+{
+  "name": "hongyukeji/sms",
+  "description": "Support the whole network SMS sending, free expansion, seamless docking.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shadow",
+      "email": "admin@hongyuvip.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "HongYuKeJi\\Helpers\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HongYuKeJi\\Helpers\\Tests\\": "tests/"
+    }
+  }
+}
