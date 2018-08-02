@@ -35,6 +35,6 @@ $ composer require "hongyukeji/sms"
 ## 维护
 
 - Author：Shadow
-- QQ：[1527200768](http://wpa.qq.com/msgrd?V=1&uin=1527200768&Menu=yes)
+- QQ：[1527200768](http://wpa.qq.com/msgrd?v=3&uin=1527200768&site=qq&menu=yes)
 - Email：[admin@hongyuvip.com](mailto:admin@hongyuvip.com)
 - QQ交流群：[90664526](http://shang.qq.com/wpa/qunwpa?idkey=a3e498d7d3329615c9b3d1dbbbc50e43fa80b39e93a1ae78f1fb0a268f3a0476)
