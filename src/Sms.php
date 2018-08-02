@@ -14,7 +14,6 @@
 
 namespace HongYuKeJi\Helpers;
 
-
 use HongYuKeJi\Helpers\Gateway\AliyunGateway;
 use HongYuKeJi\Helpers\Gateway\DuanxinbaoGateway;
 use HongYuKeJi\Helpers\Gateway\QcloudGateway;
@@ -53,7 +52,7 @@ class Sms
      */
     public function aliyun($phoneNumbers, $templateCode, $templateParam)
     {
-        $config = $this->config['aliSms'];
+        $config = $this->config['aliyun'];
 
         $accessKeyId = $config['accessKeyId'];
         $accessKeySecret = $config['accessKeySecret'];
@@ -117,7 +116,7 @@ class Sms
      */
     public function yunpian($phoneNumbers, $templateCode, $templateParam)
     {
-        $config = $this->config['yunpianSms'];
+        $config = $this->config['yunpian'];
 
         $apikey = $config['apikey'];
 
@@ -149,7 +148,7 @@ class Sms
      */
     public function qcloud($phoneNumbers, $templateCode, $templateParam)
     {
-        $config = $this->config['qcloudSms'];
+        $config = $this->config['qcloud'];
 
         $appid = $config['appid'];
         $appkey = $config['appkey'];
@@ -184,7 +183,7 @@ class Sms
      */
     public function duanxinbao($phoneNumbers, $templateCode, $templateParam)
     {
-        $config = $this->config['duanxinbaoSms'];
+        $config = $this->config['duanxinbao'];
 
         $user = $config['user']; //短信平台帐号
         $pass = $config['pass']; //短信平台密码
