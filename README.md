@@ -35,7 +35,7 @@ $ composer require hongyukeji/sms
 ## 使用
 
 ```php
-use HongYuKeJi\Helpers\Sms
+use HongYuKeJi\Helpers\Sms;
 
 $config = [
     'yunpian' => [
@@ -77,16 +77,16 @@ $defaultSms = 'yunpian';
 $sms = new Sms($config, $defaultSms);
 
 // templateCode + templateParam
-$result = $sms->send(['13800138000','13900139000'],'templateCode',[
+$result = $sms->send(['13800138000', '13900139000'], 'templateCode', [
     'code' => '1234',
     'hour' => '15分钟',
 ]);
 
 // Content + templateParam
-$result = $sms->send('13800138000','您的验证码是%s。有效期为%s，请尽快验证！',[
+$result = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
     'code' => '1234',
     'hour' => '15分钟',
-],'duanxinbao');
+], 'duanxinbao');
 
 var_dump($result);
 ```
