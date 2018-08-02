@@ -25,10 +25,12 @@ class Sms
     protected $config;
     protected $defaultSms;
 
-    public function __construct($config, $defaultSms)
+    public function __construct($config, $defaultSms = null)
     {
         $this->config = $config;
-        $this->defaultSms = $defaultSms;
+        if ($defaultSms) {
+            $this->defaultSms = $defaultSms;
+        }
     }
 
     public function send($phoneNumbers, $templateCode, $templateParam = [], $smsGateway = null)
