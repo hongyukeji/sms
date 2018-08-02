@@ -14,7 +14,7 @@
 - 支持全网络短信服务商
 - 支持自由扩展且易维护
 
-## 平台支持
+## 支持
 
 - [阿里云](https://www.aliyun.com)
 - [云片](https://www.yunpian.com)
@@ -22,7 +22,7 @@
 - [短信宝](http://www.smsbao.com)
 - 其他短信服务商快速集成（参考《宏观设计模式》 --- 鸿宇科技出品）
 
-## 环境需求
+## 环境
 
 - PHP >= 5.6.0
 
@@ -98,7 +98,7 @@ var_dump($result);
 - Email：[admin@hongyuvip.com](mailto:admin@hongyuvip.com)
 - QQ交流群：[90664526](http://shang.qq.com/wpa/qunwpa?idkey=a3e498d7d3329615c9b3d1dbbbc50e43fa80b39e93a1ae78f1fb0a268f3a0476)
 
-## 配置项
+## 配置
 
 - 阿里云
 
