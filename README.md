@@ -122,7 +122,7 @@ var_dump($result);
 
 - 短信宝
 
-> 使用说明：Content + templateParam
+> 使用说明：content + templateParam
 
 ```php
 'duanxinbao' => [
