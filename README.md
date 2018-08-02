@@ -29,7 +29,7 @@
 ## 安装
 
 ```shell
-$ composer require "hongyukeji/sms"
+$ composer require hongyukeji/sms
 ```
 
 ## 维护
