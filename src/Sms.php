@@ -36,7 +36,7 @@ class Sms
     public function send($phoneNumbers, $templateCode, $templateParam = [], $smsGateway = null)
     {
         $defaultSms = $this->defaultSms;
-        if ($smsGateway || !empty($this->defaultSms)) {
+        if ($smsGateway || empty($this->defaultSms)) {
             $defaultSms = $smsGateway;
         }
         return $this->$defaultSms($phoneNumbers, $templateCode, $templateParam);
