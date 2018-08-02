@@ -1,4 +1,4 @@
-<h1 align="center">:iphone:SMS</h1>
+<h1 align="center">SMS</h1>
 
 <p align="center">
 <a href="https://packagist.org/packages/hongyukeji/sms"><img src="https://poser.pugx.org/hongyukeji/sms/v/stable" alt="Latest Stable Version"></a>
@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/hongyukeji/sms"><img src="https://poser.pugx.org/hongyukeji/sms/license" alt="License"></a>
 </p>
 
-> 支持全网短信发送，自由扩展，无缝对接。更多请点击[https://www.hongyuvip.com](https://www.hongyuvip.com)
+> :iphone:支持全网短信发送，自由扩展，无缝对接。更多请点击[https://www.hongyuvip.com](https://www.hongyuvip.com)
 
 ## 特点
 
