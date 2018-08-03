@@ -24,11 +24,11 @@ class Sms
     protected $config;
     protected $defaultSms;
 
-    public function __construct($config, $defaultSms = null)
+    public function __construct($config)
     {
         $this->config = $config;
-        if ($defaultSms) {
-            $this->defaultSms = $defaultSms;
+        if (!empty($config['defaultSms'])) {
+            $this->defaultSms = $config['defaultSms'];
         }
     }
 

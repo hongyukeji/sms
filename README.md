@@ -38,6 +38,7 @@ $ composer require hongyukeji/sms
 use HongYuKeJi\Helpers\Sms;
 
 $config = [
+    'defaultSms' => 'yunpian',
     'yunpian' => [
         'apikey' => '',
     ],

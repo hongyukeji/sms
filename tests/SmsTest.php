@@ -18,32 +18,31 @@ use HongYuKeJi\Helpers\Sms;
 
 class SmsTest
 {
+    protected $config = [
+        'defaultSms' => 'yunpian',
+        'yunpian' => [
+            'apikey' => '',
+        ],
+        'aliyun' => [
+            'accessKeyId' => '',
+            'accessKeySecret' => '',
+            'signName' => '',
+        ],
+        'qcloud' => [
+            'appid' => '',
+            'appkey' => '',
+            'smsSign' => '',
+        ],
+        'duanxinbao' => [
+            'user' => '',
+            'pass' => '',
+            'signName' => '',
+        ],
+    ];
+
     public function send()
     {
-        $config = [
-            'yunpian' => [
-                'apikey' => '',
-            ],
-            'aliyun' => [
-                'accessKeyId' => '',
-                'accessKeySecret' => '',
-                'signName' => '',
-            ],
-            'qcloud' => [
-                'appid' => '',
-                'appkey' => '',
-                'smsSign' => '',
-            ],
-            'duanxinbao' => [
-                'user' => '',
-                'pass' => '',
-                'signName' => '',
-            ],
-        ];
-
-        $defaultSms = 'yunpian';
-
-        $sms = new Sms($config, $defaultSms);
+        $sms = new Sms($this->config);
 
         // templateCode + templateParam
         $result = $sms->send(['13800138000', '13900139000'], 'templateCode', [
