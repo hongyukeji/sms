@@ -25,7 +25,7 @@
 - [腾讯](https://cloud.tencent.com/product/sms)
 - [短信宝](http://www.smsbao.com)
 - [赛邮云](https://www.mysubmail.com)
-- 其他短信服务商快速集成（参考《宏观设计模式》 --- 鸿宇科技出品）
+- 其他短信服务商快速集成（参考 [《宏观设计模式》](docs/README.md) — 鸿宇科技出品）
 
 ## 环境
 
