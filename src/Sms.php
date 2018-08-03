@@ -23,31 +23,32 @@ use HongYuKeJi\Helpers\Gateways\SubmailGateway;
 class Sms
 {
     protected $config;
-    protected $defaultSms;
+    protected $defaultGateway;
 
     public function __construct($config)
     {
         $this->config = $config['gateways'];
         // 默认短信存在时采用默认短信网关
         if (!empty($config['default']['gateway'])) {
-            $this->defaultSms = $config['default']['gateway'];
+            $this->defaultGateway = $config['default']['gateway'];
         }
         // 判断默认短信名称对应的配置项是否存在
-        if (!empty($this->defaultSms) && !empty($this->config) && !array_key_exists($this->defaultSms, $this->config)) {
-            $this->defaultSms = null;
+        if (!empty($this->defaultGateway) && !empty($this->config) && !array_key_exists($this->defaultGateway, $this->config)) {
+            $this->defaultGateway = null;
         }
     }
 
-    public function send($phoneNumbers, $templateCode, $templateParam = [], $smsGateway = null)
+    public function send($phoneNumbers, $templateCode, $templateParam = [], $gateway = null)
     {
-        $defaultSms = $this->defaultSms;
-        if (!empty($smsGateway) || empty($defaultSms)) {
-            $defaultSms = $smsGateway;
+        $defaultGateway = $this->defaultGateway;
+        if (!empty($gateway) || empty($defaultGateway)) {
+            $defaultGateway = $gateway;
         }
-        if (empty($smsGateway) && empty($defaultSms)) {
-            $defaultSms = reset(array_keys($this->config));
+        if (empty($gateway) && empty($defaultGateway)) {
+            $gateways = array_keys($this->config);
+            $defaultGateway = reset($gateways);
         }
-        return $this->$defaultSms($phoneNumbers, $templateCode, $templateParam);
+        return $this->$defaultGateway($phoneNumbers, $templateCode, $templateParam);
     }
 
     /**

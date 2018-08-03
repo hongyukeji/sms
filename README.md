@@ -39,28 +39,32 @@ $ composer require hongyukeji/sms
 use HongYuKeJi\Helpers\Sms;
 
 $config = [
-    'defaultSms' => 'yunpian',
-    'yunpian' => [
-        'apikey' => '',
+    'default' => [
+        'gateway' => 'yunpian',
     ],
-    'aliyun' => [
-        'accessKeyId' => '',
-        'accessKeySecret' => '',
-        'signName' => '',
-    ],
-    'qcloud' => [
-        'appid' => '',
-        'appkey' => '',
-        'smsSign' => '',
-    ],
-    'duanxinbao' => [
-        'user' => '',
-        'pass' => '',
-        'signName' => '',
-    ],
-    'submail' => [
-        'appid' => '',
-        'appkey' => '',
+    'gateways' => [
+        'yunpian' => [
+            'apikey' => '',
+        ],
+        'aliyun' => [
+            'accessKeyId' => '',
+            'accessKeySecret' => '',
+            'signName' => '',
+        ],
+        'qcloud' => [
+            'appid' => '',
+            'appkey' => '',
+            'smsSign' => '',
+        ],
+        'duanxinbao' => [
+            'user' => '',
+            'pass' => '',
+            'signName' => '',
+        ],
+        'submail' => [
+            'appid' => '',
+            'appkey' => '',
+        ],
     ],
 ];
 
@@ -138,7 +142,7 @@ var_dump($resultContent);
 ],
 ```
 
-- SUBMAIL赛邮短信
+- 赛邮云短信
 
 > 使用说明：templateCode + templateParam
 

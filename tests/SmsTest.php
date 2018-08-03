@@ -21,28 +21,49 @@ class SmsTest
     public function send()
     {
         $config = [
-            'defaultSms' => 'yunpian',
-            'yunpian' => [
-                'apikey' => '',
+            'default' => [
+                'gateway' => 'yunpian',
             ],
-            'aliyun' => [
-                'accessKeyId' => '',
-                'accessKeySecret' => '',
-                'signName' => '',
-            ],
-            'qcloud' => [
-                'appid' => '',
-                'appkey' => '',
-                'smsSign' => '',
-            ],
-            'duanxinbao' => [
-                'user' => '',
-                'pass' => '',
-                'signName' => '',
-            ],
-            'submail' => [
-                'appid' => '',
-                'appkey' => '',
+            'gateways' => [
+                'yunpian' => [
+                    'apikey' => '',
+                    'templateCode' => [
+                        // 您的验证码是#code#。有效期为#time#，请尽快验证！
+                        'verificationCode' => '',
+                    ],
+                ],
+                'aliyun' => [
+                    'accessKeyId' => '',
+                    'accessKeySecret' => '',
+                    'signName' => '',
+                    'templateCode' => [
+                        // 您的验证码是${code}。有效期为${time}，请尽快验证！
+                        'verificationCode' => '',
+                    ],
+                ],
+                'qcloud' => [
+                    'appid' => '',
+                    'appkey' => '',
+                    'smsSign' => '',
+                    'templateCode' => [
+                        'verificationCode' => '',
+                    ],
+                ],
+                'duanxinbao' => [
+                    'user' => '',
+                    'pass' => '',
+                    'signName' => '',
+                    'templateCode' => [
+                        'verificationCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
+                    ],
+                ],
+                'submail' => [
+                    'appid' => '',
+                    'appkey' => '',
+                    'templateCode' => [
+                        'verificationCode' => '',
+                    ],
+                ],
             ],
         ];
 
