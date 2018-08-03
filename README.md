@@ -114,7 +114,7 @@ var_dump($resultContent);
 ],
 ```
 
-- 云片
+- 云片网
 
 > 使用说明：templateCode + templateParam
 
@@ -148,7 +148,7 @@ var_dump($resultContent);
 ],
 ```
 
-- 赛邮云短信
+- 赛邮云
 
 > 使用说明：templateCode + templateParam
 
