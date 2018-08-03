@@ -57,23 +57,29 @@ $config = [
         'pass' => '',
         'signName' => '',
     ],
+    'submail' => [
+        'appid' => '',
+        'appkey' => '',
+    ],
 ];
 
 $sms = new Sms($config);
 
 // templateCode + templateParam
-$result = $sms->send(['13800138000', '13900139000'], 'templateCode', [
+$resultTemplateCode = $sms->send(['13800138000', '13900139000'], 'templateCode', [
     'code' => '1234',
     'time' => '15分钟',
 ]);
 
+var_dump($resultTemplateCode);
+
 // Content + templateParam
-$result = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
+$resultContent = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
     'code' => '1234',
     'time' => '15分钟',
-], 'duanxinbao');
+], 'submail');
 
-var_dump($result);
+var_dump($resultContent);
 ```
 
 ## 维护
