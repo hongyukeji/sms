@@ -18,6 +18,7 @@ use HongYuKeJi\Helpers\Gateway\AliyunGateway;
 use HongYuKeJi\Helpers\Gateway\DuanxinbaoGateway;
 use HongYuKeJi\Helpers\Gateway\QcloudGateway;
 use HongYuKeJi\Helpers\Gateway\YunpianGateway;
+use HongYuKeJi\Helpers\Gateways\SubmailGateway;
 
 class Sms
 {
@@ -213,6 +214,35 @@ class Sms
             return $this->result('0', '发送成功');
         } else {
             return $this->result('1', $statusStr[$result], json_encode($statusStr[$result], JSON_UNESCAPED_UNICODE));
+        }
+    }
+
+    /**
+     * SUBMAIL赛邮短信
+     *
+     * @see https://www.mysubmail.com/chs/documents/developer/index
+     *
+     * @param $phoneNumbers
+     * @param $templateCode
+     * @param $templateParam
+     * @return mixed
+     */
+    public function submail($phoneNumbers, $templateCode, $templateParam)
+    {
+        $config = $this->config['submail'];
+
+        $smsObj = new SubmailGateway($config);
+
+        if (!empty($phoneNumbers) && !is_array($phoneNumbers)) {
+            $result = $smsObj->send($phoneNumbers, $templateCode, $templateParam);
+        } else {
+            $result = $smsObj->sendBatch($phoneNumbers, $templateCode, $templateParam);
+        }
+
+        if ($result['status'] == 'success') {
+            return $this->result('0', '发送成功');
+        } else {
+            return $this->result('1', '错误代码：' . $result['code'] . ' 描述：' . $result['msg'], json_encode($result, JSON_UNESCAPED_UNICODE));
         }
     }
 

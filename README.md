@@ -64,13 +64,13 @@ $sms = new Sms($config);
 // templateCode + templateParam
 $result = $sms->send(['13800138000', '13900139000'], 'templateCode', [
     'code' => '1234',
-    'hour' => '15分钟',
+    'time' => '15分钟',
 ]);
 
 // Content + templateParam
 $result = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
     'code' => '1234',
-    'hour' => '15分钟',
+    'time' => '15分钟',
 ], 'duanxinbao');
 
 var_dump($result);

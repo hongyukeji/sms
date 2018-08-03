@@ -4,8 +4,8 @@ $config = [
     'yunpian' => [
         'apikey' => '',
         'templateCode' => [
-            // 您的验证码是#code#。有效期为#hour#，请尽快验证！
-            'verificationCode' => '2414994',
+            // 您的验证码是#code#。有效期为#time#，请尽快验证！
+            'verificationCode' => '',
         ],
     ],
     'aliyun' => [
@@ -13,7 +13,7 @@ $config = [
         'accessKeySecret' => '',
         'signName' => '',
         'templateCode' => [
-            // 您的验证码是${code}。有效期为${hour}，请尽快验证！
+            // 您的验证码是${code}。有效期为${time}，请尽快验证！
             'verificationCode' => '',
         ],
     ],
