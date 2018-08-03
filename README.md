@@ -1,4 +1,4 @@
-<h1 align="center">SMS - 全网首款支持所有短信服务商</h1>
+<h1 align="center">SMS - 短信发送，从未如此简单</h1>
 
 <p align="center">
 <a href="https://packagist.org/packages/hongyukeji/sms"><img src="https://poser.pugx.org/hongyukeji/sms/v/stable" alt="Latest Stable Version"></a>
