@@ -59,9 +59,7 @@ $config = [
     ],
 ];
 
-$defaultSms = 'yunpian';
-
-$sms = new Sms($config, $defaultSms);
+$sms = new Sms($config);
 
 // templateCode + templateParam
 $result = $sms->send(['13800138000', '13900139000'], 'templateCode', [
