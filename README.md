@@ -9,7 +9,7 @@
 
 > 支持全网短信发送，自由扩展，无缝对接。
 
-> 采用鸿宇科技专利《宏观设计模式》开发。
+> 采用鸿宇科技专利 [《宏观设计模式》](docs/README.md) 开发。
 
 > 更多请点击 [https://www.hongyuvip.com](https://www.hongyuvip.com)
 
