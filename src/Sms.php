@@ -27,9 +27,14 @@ class Sms
 
     public function __construct($config)
     {
-        $this->config = $config;
-        if (!empty($config['defaultSms'])) {
-            $this->defaultSms = $config['defaultSms'];
+        $this->config = $config['gateways'];
+        // 默认短信存在时采用默认短信网关
+        if (!empty($config['default']['gateway'])) {
+            $this->defaultSms = $config['default']['gateway'];
+        }
+        // 判断默认短信名称对应的配置项是否存在
+        if (!empty($this->defaultSms) && !empty($this->config) && !array_key_exists($this->defaultSms, $this->config)) {
+            $this->defaultSms = null;
         }
     }
 
@@ -38,6 +43,9 @@ class Sms
         $defaultSms = $this->defaultSms;
         if (!empty($smsGateway) || empty($defaultSms)) {
             $defaultSms = $smsGateway;
+        }
+        if (empty($smsGateway) && empty($defaultSms)) {
+            $defaultSms = reset(array_keys($this->config));
         }
         return $this->$defaultSms($phoneNumbers, $templateCode, $templateParam);
     }
