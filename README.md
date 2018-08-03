@@ -21,11 +21,11 @@
 ## 支持
 
 - [阿里云](https://www.aliyun.com)
-- [云片](https://www.yunpian.com)
-- [腾讯](https://cloud.tencent.com/product/sms)
+- [云片网](https://www.yunpian.com)
+- [腾讯云](https://cloud.tencent.com/product/sms)
 - [短信宝](http://www.smsbao.com)
 - [赛邮云](https://www.mysubmail.com)
-- 上述短信服务商，是目前互联网上用的比较多的，其他短信如有需要可联系[Shadow](http://wpa.qq.com/msgrd?v=3&uin=1527200768&site=qq&menu=yes)集成
+- 上述短信服务商比较常用，其他短信如有需要可联系[Shadow](http://wpa.qq.com/msgrd?v=3&uin=1527200768&site=qq&menu=yes)集成
 - 如需支持其他短信服务商，请自行Fork，在`src/Sms.php`中添加即可
 - 短信速集成（参考[《宏观设计模式》](docs/README.md) — 鸿宇科技出品）
 
