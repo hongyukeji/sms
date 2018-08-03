@@ -85,12 +85,12 @@ $resultTemplateCode = $sms->send(['13800138000', '13900139000'], 'templateCode',
 var_dump($resultTemplateCode);
 
 // Content + templateParam
-$resultContent = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
+$resultTemplateContent = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
     'code' => '1234',
     'time' => '15分钟',
 ], 'submail');
 
-var_dump($resultContent);
+var_dump($resultTemplateContent);
 ```
 
 ## 维护
