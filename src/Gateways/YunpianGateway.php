@@ -6,22 +6,28 @@ use HongYuKeJi\Helpers\Gateways\Gateway;
 
 class YunpianGateway extends Gateway
 {
-    protected $apikey;
-    protected $batchSend;
+    protected $config;
 
-    public function __construct($apikey, $batch = false)
+    public function __construct($config)
     {
-        $this->apikey = $apikey;
-        $this->batchSend = $batch;
+        $this->config = $config;
     }
 
-    // php DEMO https://www.yunpian.com/doc/zh_CN/introduction/demos/php.html
-    // 返回码总体说明 https://www.yunpian.com/doc/zh_CN/returnValue/list.html
-    // 返回值示例 https://www.yunpian.com/doc/zh_CN/returnValue/example.html
-    // 常见的返回码 https://www.yunpian.com/doc/zh_CN/returnValue/common.html
+    /**
+     * 云片网开发文档
+     * php DEMO https://www.yunpian.com/doc/zh_CN/introduction/demos/php.html
+     * 返回码总体说明 https://www.yunpian.com/doc/zh_CN/returnValue/list.html
+     * 返回值示例 https://www.yunpian.com/doc/zh_CN/returnValue/example.html
+     * 常见的返回码 https://www.yunpian.com/doc/zh_CN/returnValue/common.html
+     *
+     * @param $templateCode
+     * @param $phoneNumbers
+     * @param $templateParam
+     * @return mixed
+     */
     public function sendSms($templateCode, $phoneNumbers, $templateParam)
     {
-        $apikey = $this->apikey;
+        $apikey = $this->config['apikey'];
 
         $ch = curl_init();
 
@@ -38,11 +44,19 @@ class YunpianGateway extends Gateway
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
+        // 格式化手机号
+        if (!empty($phoneNumbers) && is_array($phoneNumbers)) {
+            $phoneNumbers = $this->yunPianSwitchMobile($phoneNumbers);
+        }
+
+        // 格式化参数
+        $templateParam = $this->yunPianSwitchTplValue($templateParam);
+
         // 发送短信
         $data = array('tpl_id' => $templateCode, 'tpl_value' => $templateParam, 'apikey' => $apikey, 'mobile' => $phoneNumbers);
 
         // 判断是否群发
-        if ($this->batchSend == true) {
+        if ($this->config['batch'] == true) {
             $json_data = $this->tpl_sends($ch, $data);
         } else {
             $json_data = $this->tpl_send($ch, $data);
@@ -53,6 +67,48 @@ class YunpianGateway extends Gateway
         curl_close($ch);
 
         return $array;
+    }
+
+    /**
+     * 云片短信处理手机号
+     *
+     * @param $array
+     * @return null|string
+     */
+    public function yunPianSwitchMobile($array)
+    {
+        $string = array();
+
+        if ($array && is_array($array)) {
+            foreach ($array as $key => $value) {
+                $string[] = $value;
+            }
+        } else {
+            return null;
+        }
+
+        return implode(',', $string);
+    }
+
+    /**
+     * 云片短信处理模板值
+     *
+     * @param $array
+     * @return null|string
+     */
+    public function yunPianSwitchTplValue($array)
+    {
+        $string = array();
+
+        if ($array && is_array($array)) {
+            foreach ($array as $key => $value) {
+                $string[] = '#' . $key . '#=' . $value;
+            }
+        } else {
+            return null;
+        }
+
+        return implode('&', $string);
     }
 
     public function get_user($ch, $apikey)
@@ -124,47 +180,5 @@ class YunpianGateway extends Gateway
         } else {
             //echo '操作完成没有任何错误';
         }
-    }
-
-    /**
-     * 云片短信处理手机号
-     *
-     * @param $array
-     * @return null|string
-     */
-    public function yunPianSwitchMobile($array)
-    {
-        $string = [];
-
-        if ($array && is_array($array)) {
-            foreach ($array as $key => $value) {
-                $string[] = $value;
-            }
-        } else {
-            return null;
-        }
-
-        return implode(',', $string);
-    }
-
-    /**
-     * 云片短信处理模板值
-     *
-     * @param $array
-     * @return null|string
-     */
-    public function yunPianSwitchTplValue($array)
-    {
-        $string = [];
-
-        if ($array && is_array($array)) {
-            foreach ($array as $key => $value) {
-                $string[] = '#' . $key . '#=' . $value;
-            }
-        } else {
-            return null;
-        }
-
-        return implode('&', $string);
     }
 }

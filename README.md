@@ -137,3 +137,14 @@ var_dump($resultContent);
     'signName' => '',
 ],
 ```
+
+- SUBMAIL赛邮短信
+
+> 使用说明：templateCode + templateParam
+
+```php
+'submail' => [
+    'appid' => '',
+    'appkey' => '',
+],
+```

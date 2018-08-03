@@ -11,11 +11,11 @@ class DuanxinbaoGateway extends Gateway
     protected $pass;
     protected $signName;
 
-    public function __construct($user, $pass, $signName)
+    public function __construct($config)
     {
-        $this->user = $user;
-        $this->pass = $pass;
-        $this->signName = $signName;
+        $this->user = $config['user'];  // 短信平台帐号
+        $this->pass = $config['pass'];  // 短信平台密码
+        $this->signName = $config['signName'];  // 短信签名
     }
 
     public function send($phoneNumbers, $templateCode, $templateParam)

@@ -65,6 +65,3 @@ class SmsTest
         var_dump($resultContent);
     }
 }
-
-$smsObj = new SmsTest();
-$smsObj->send();

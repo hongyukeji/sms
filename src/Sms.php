@@ -36,7 +36,7 @@ class Sms
     public function send($phoneNumbers, $templateCode, $templateParam = [], $smsGateway = null)
     {
         $defaultSms = $this->defaultSms;
-        if ($smsGateway || empty($this->defaultSms)) {
+        if (!empty($smsGateway) || empty($defaultSms)) {
             $defaultSms = $smsGateway;
         }
         return $this->$defaultSms($phoneNumbers, $templateCode, $templateParam);
@@ -118,19 +118,17 @@ class Sms
     public function yunpian($phoneNumbers, $templateCode, $templateParam)
     {
         $config = $this->config['yunpian'];
+        $config['batch'] = false;
 
-        $apikey = $config['apikey'];
-
-        $smsObj = new YunpianGateway($apikey);
-
-        if (!empty($phoneNumbers) && is_array($phoneNumbers)) {
-            $phoneNumbers = $smsObj->yunPianSwitchMobile($phoneNumbers);
-            $smsObj::$batchSend = true;
+        if (is_array($phoneNumbers)) {
+            $config['batch'] = true;
         }
 
-        $response = $smsObj->sendSms($templateCode, $phoneNumbers, $smsObj->yunPianSwitchTplValue($templateParam));
+        $smsObj = new YunpianGateway($config);
 
-        if (!empty($response['code']) == '0') {
+        $response = $smsObj->sendSms($templateCode, $phoneNumbers, $templateParam);
+
+        if ($response['code'] == '0') {
             return $this->result('0', '发送成功');
         } else {
             return $this->result('1', $response['msg'], json_encode($response, JSON_UNESCAPED_UNICODE));
@@ -186,11 +184,7 @@ class Sms
     {
         $config = $this->config['duanxinbao'];
 
-        $user = $config['user']; //短信平台帐号
-        $pass = $config['pass']; //短信平台密码
-        $signName = $config['signName']; //短信签名
-
-        $smsObj = new DuanxinbaoGateway($user, $pass, $signName);
+        $smsObj = new DuanxinbaoGateway($config);
 
         if (!empty($phoneNumbers) && !is_array($phoneNumbers)) {
             $result = $smsObj->send($phoneNumbers, $templateCode, $templateParam);

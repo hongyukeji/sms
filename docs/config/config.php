@@ -1,6 +1,7 @@
 <?php
 
 $config = [
+    'defaultSms' => 'yunpian',
     'yunpian' => [
         'apikey' => '',
         'templateCode' => [
@@ -31,6 +32,13 @@ $config = [
         'signName' => '',
         'templateCode' => [
             'verificationCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
+        ],
+    ],
+    'submail' => [
+        'appid' => '',
+        'appkey' => '',
+        'templateCode' => [
+            'verificationCode' => '',
         ],
     ],
 ];
