@@ -25,7 +25,9 @@
 - [腾讯](https://cloud.tencent.com/product/sms)
 - [短信宝](http://www.smsbao.com)
 - [赛邮云](https://www.mysubmail.com)
-- 其他短信服务商快速集成（参考[《宏观设计模式》](docs/README.md) — 鸿宇科技出品）
+- 上述短信服务商，是目前互联网上用的比较多的，其他短信如有需要可联系Shadow集成
+- 如需支持其他短信服务商，可在`src/Sms.php`中添加即可
+- 短信速集成（参考[《宏观设计模式》](docs/README.md) — 鸿宇科技出品）
 
 ## 环境
 
