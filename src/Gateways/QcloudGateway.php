@@ -1,6 +1,6 @@
 <?php
 
-namespace HongYuKeJi\Helpers\Gateway;
+namespace HongYuKeJi\Helpers\Gateways;
 
 use HongYuKeJi\Helpers\Gateways\Qcloud\SmsMultiSender;
 use HongYuKeJi\Helpers\Gateways\Qcloud\SmsSingleSender;

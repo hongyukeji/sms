@@ -64,6 +64,18 @@ class SmsTest
                         'verificationCode' => '',
                     ],
                 ],
+                'sendcloud' => [
+                    'sms_user' => '',
+                    'sms_key' => '',
+                ],
+                'ihuyi' => [
+                    'apiid' => '',
+                    'apikey' => '',
+                    'templateCode' => [
+                        // 您的验证码是【变量】。有效期为【变量】，请尽快验证！
+                        'verificationCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
+                    ],
+                ],
             ],
         ];
 

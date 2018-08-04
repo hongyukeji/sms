@@ -14,10 +14,12 @@
 
 namespace HongYuKeJi\Helpers;
 
-use HongYuKeJi\Helpers\Gateway\AliyunGateway;
-use HongYuKeJi\Helpers\Gateway\DuanxinbaoGateway;
-use HongYuKeJi\Helpers\Gateway\QcloudGateway;
-use HongYuKeJi\Helpers\Gateway\YunpianGateway;
+use HongYuKeJi\Helpers\Gateways\AliyunGateway;
+use HongYuKeJi\Helpers\Gateways\DuanxinbaoGateway;
+use HongYuKeJi\Helpers\Gateways\QcloudGateway;
+use HongYuKeJi\Helpers\Gateways\YunpianGateway;
+use HongYuKeJi\Helpers\Gateways\IhuyiGateway;
+use HongYuKeJi\Helpers\Gateways\SendCloudGateway;
 use HongYuKeJi\Helpers\Gateways\SubmailGateway;
 
 class Sms
@@ -249,14 +251,38 @@ class Sms
         }
     }
 
-    public function sendcloud()
+    public function sendcloud($phoneNumbers, $templateCode, $templateParam)
     {
-        //
+        $config = $this->config['sendcloud'];
+
+        $smsObj = new SendCloudGateway($config);
+
+        if (!empty($phoneNumbers) && !is_array($phoneNumbers)) {
+            $result = $smsObj->send($phoneNumbers, $templateCode, $templateParam);
+        } else {
+            $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
+        }
+
+        return $result;
     }
 
-    public function ihuyi()
+    public function ihuyi($phoneNumbers, $templateCode, $templateParam)
     {
-        //
+        $config = $this->config['ihuyi'];
+
+        $smsObj = new IhuyiGateway($config);
+
+        if (!empty($phoneNumbers) && !is_array($phoneNumbers)) {
+            $result = $smsObj->send($phoneNumbers, $templateCode, $templateParam);
+        } else {
+            $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
+        }
+
+        if ($result['SubmitResult']['code'] == '2') {
+            return $this->result('0', '发送成功');
+        } else {
+            return $this->result('1', $result['SubmitResult']['msg'], json_encode($result, JSON_UNESCAPED_UNICODE));
+        }
     }
 
     public function result($statusCode, $message, $data = null)

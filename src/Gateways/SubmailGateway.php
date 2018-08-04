@@ -5,6 +5,7 @@ namespace HongYuKeJi\Helpers\Gateways;
 require_once dirname(__FILE__) . '/Submail/SUBMAILAutoload.php';
 
 use MESSAGEXsend;
+use HongYuKeJi\Helpers\Gateways\Gateway;
 
 class SubmailGateway extends Gateway
 {

@@ -14,8 +14,26 @@
 
 namespace HongYuKeJi\Helpers\Gateways;
 
+use HongYuKeJi\Helpers\Gateways\Gateway;
 
 class SendCloudGateway extends Gateway
 {
-    //
+    protected $sms_user;
+    protected $sms_key;
+
+    public function __construct($config)
+    {
+        $this->sms_user = $config['sms_user'];
+        $this->sms_key = $config['sms_key'];
+    }
+
+    public function send($phoneNumbers, $templateCode, $templateParam)
+    {
+        //
+    }
+
+    public function sendBatchSms($phoneNumbers, $templateCode, $templateParam)
+    {
+        //
+    }
 }
