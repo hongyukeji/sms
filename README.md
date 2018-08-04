@@ -160,3 +160,25 @@ var_dump($resultTemplateContent);
     'appkey' => '',
 ],
 ```
+
+- SendCloud
+
+> 使用说明：templateCode + templateParam
+
+```php
+'sendcloud' => [
+    'sms_user' => '',
+    'sms_key' => '',
+],
+```
+
+- 互亿无线
+
+> 使用说明：templateCode + templateParam
+
+```php
+'ihuyi' => [
+    'apiid' => '',
+    'apikey' => '',
+],
+```
