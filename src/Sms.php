@@ -249,6 +249,16 @@ class Sms
         }
     }
 
+    public function sendcloud()
+    {
+        //
+    }
+
+    public function ihuyi()
+    {
+        //
+    }
+
     public function result($statusCode, $message, $data = null)
     {
         $result = [
