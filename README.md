@@ -174,7 +174,7 @@ var_dump($resultTemplateContent);
 
 - 互亿无线
 
-> 使用说明：templateCode + templateParam
+> 使用说明：templateContent + templateParam
 
 ```php
 'ihuyi' => [
