@@ -263,6 +263,7 @@ class Sms
             $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
         }
 
+        // TODO: 待处理返回数据判断
         return $result;
     }
 
