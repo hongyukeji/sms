@@ -2,7 +2,7 @@
 
 namespace HongYuKeJi\Helpers\Tests;
 
-(new \Dotenv\Dotenv(__DIR__ . '/../'))->load();
+require_once dirname(__FILE__) . '/../example/config.php';
 
 use HongYuKeJi\Helpers\Sms;
 use HongYuKeJi\Helpers\Tests\TestCase;

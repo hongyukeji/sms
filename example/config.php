@@ -1,6 +1,8 @@
 <?php
 
-$config = [
+(new \Dotenv\Dotenv(__DIR__ . '/../'))->load();
+
+$configs = [
     'default' => [
         'gateway' => 'yunpian',
     ],
