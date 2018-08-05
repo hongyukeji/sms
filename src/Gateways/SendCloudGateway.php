@@ -33,8 +33,8 @@ class SendCloudGateway extends Gateway
         }
         $smsMsg->setTemplateId($smsTemplateId);
         $smsMsg->setTimestamp(time());
-        $resonse = $sendSms->send($smsMsg);
-        return $resonse->body();
+        $response = $sendSms->send($smsMsg);
+        return $response->body();
     }
 
     public function sendBatchSms($phoneNumbers, $templateCode, $templateParam)
@@ -50,7 +50,7 @@ class SendCloudGateway extends Gateway
         }
         $smsMsg->setTemplateId($smsTemplateId);
         $smsMsg->setTimestamp(time());
-        $resonse = $sendSms->send($smsMsg);
-        return $resonse->body();
+        $response = $sendSms->send($smsMsg);
+        return $response->body();
     }
 }
