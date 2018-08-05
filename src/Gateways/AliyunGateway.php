@@ -11,16 +11,14 @@ class AliyunGateway extends Gateway
     protected $signName;
 
     /**
-     * AliSmsClient constructor.
-     * @param $accessKeyId
-     * @param $accessKeySecret
-     * @param $signName
+     * AliyunGateway constructor.
+     * @param $config
      */
-    public function __construct($accessKeyId, $accessKeySecret, $signName)
+    public function __construct($config)
     {
-        $this->accessKeyId = $accessKeyId;
-        $this->accessKeySecret = $accessKeySecret;
-        $this->signName = $signName;
+        $this->accessKeyId = $config['accessKeyId'];
+        $this->accessKeySecret = $config['accessKeySecret'];
+        $this->signName = $config['signName'];
     }
 
     /**
@@ -38,38 +36,20 @@ class AliyunGateway extends Gateway
         $params = array();
 
         // *** 需用户填写部分 ***
-
-        // fixme 必填: 请参阅 https://ak-console.aliyun.com/ 取得您的AK信息
         $accessKeyId = $this->accessKeyId;
         $accessKeySecret = $this->accessKeySecret;
-
-        // fixme 必填: 短信接收号码
         $params["PhoneNumbers"] = $phoneNumbers;
-
-        // fixme 必填: 短信签名，应严格按"签名名称"填写，请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/sign
         $params["SignName"] = $this->signName;
-
-        // fixme 必填: 短信模板Code，应严格按"模板CODE"填写, 请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/template
         $params["TemplateCode"] = $templateCode;
-
-        // fixme 可选: 设置模板参数, 假如模板中存在变量需要替换则为必填项
         $params['TemplateParam'] = $templateParam;
-
-        // fixme 可选: 设置发送短信流水号
         $params['OutId'] = $outId;
-
-        // fixme 可选: 上行短信扩展码, 扩展码字段控制在7位或以下，无特殊需求用户请忽略此字段
         $params['SmsUpExtendCode'] = $smsUpExtendCode;
-
-
         // *** 需用户填写部分结束, 以下代码若无必要无需更改 ***
         if (!empty($params["TemplateParam"]) && is_array($params["TemplateParam"])) {
             $params["TemplateParam"] = json_encode($params["TemplateParam"], JSON_UNESCAPED_UNICODE);
         }
-
         // 初始化SignatureHelper实例用于设置参数，签名以及发送请求
         //$helper = new SignatureHelper();
-
         // 此处可能会抛出异常，注意catch
         $content = $this->request(
             $accessKeyId,
@@ -81,6 +61,30 @@ class AliyunGateway extends Gateway
                 "Version" => "2017-05-25",
             ))
         );
+
+        $response = $content;
+
+        if ($response->Code === "InvalidAccessKeyId.NotFound") {
+            $response->Message = '阿里短信 accessKeyId 不正确，无效的访问密钥';
+        }
+        if ($response->Code === 'SignatureDoesNotMatch') {
+            $response->Message = '阿里短信 accessKeySecret 不正确，签名不匹配';
+        }
+        if ($response->Code === 'isv.SMS_SIGNATURE_ILLEGAL') {
+            $response->Message = '阿里短信 signName 不正确，签名不合法(不存在或被拉黑';
+        }
+        if ($response->Code === 'isv.SMS_TEMPLATE_ILLEGAL') {
+            $response->Message = $templateCode . $response->Message;
+        }
+        if ($response->Code === 'isv.TEMPLATE_MISSING_PARAMETERS') {
+            $response->Message = $templateCode . $response->Message;
+        }
+        if ($response->Code === 'isv.MOBILE_NUMBER_ILLEGAL') {
+            $response->Message = $phoneNumbers . '手机号无效';
+        }
+        if ($response->Code === 'isv.BUSINESS_LIMIT_CONTROL') {
+            $response->Message = '阿里短信业务限流：将短信发送频率限制在正常的业务流控范围内，默认流控：短信验证码 ：使用同一个签名，对同一个手机号码发送短信验证码，支持1条/分钟，5条/小时 ，累计10条/天。参考网址：https://help.aliyun.com/knowledge_detail/57710.html';
+        }
 
         return $content;
     }
@@ -98,42 +102,27 @@ class AliyunGateway extends Gateway
         $params = array();
 
         // *** 需用户填写部分 ***
-
-        // fixme 必填: 请参阅 https://ak-console.aliyun.com/ 取得您的AK信息
         $accessKeyId = $this->accessKeyId;
         $accessKeySecret = $this->accessKeySecret;
-
-        // fixme 必填: 待发送手机号。支持JSON格式的批量调用，批量上限为100个手机号码,批量调用相对于单条调用及时性稍有延迟,验证码类型的短信推荐使用单条调用的方式
         $params["PhoneNumberJson"] = $phoneNumbers;
-
-        // fixme 必填: 短信签名，支持不同的号码发送不同的短信签名，每个签名都应严格按"签名名称"填写，请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/sign
         $params["SignNameJson"] = array();
         foreach ($phoneNumbers as $key => $value) {
             array_push($params["SignNameJson"], $this->signName);
         }
-
-        // fixme 必填: 短信模板Code，应严格按"模板CODE"填写, 请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/template
         $params["TemplateCode"] = $templateCode;
-
-        // fixme 必填: 模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
         // 友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
         $params["TemplateParamJson"] = array();
         foreach ($phoneNumbers as $key => $value) {
             array_push($params["TemplateParamJson"], $templateParam);
         }
-
-        // todo 可选: 上行短信扩展码, 扩展码字段控制在7位或以下，无特殊需求用户请忽略此字段
         $params["SmsUpExtendCodeJson"] = json_encode(array("90997", "90998"));
-
         // *** 需用户填写部分结束, 以下代码若无必要无需更改 ***
         $params["TemplateParamJson"] = json_encode($params["TemplateParamJson"], JSON_UNESCAPED_UNICODE);
         $params["SignNameJson"] = json_encode($params["SignNameJson"], JSON_UNESCAPED_UNICODE);
         $params["PhoneNumberJson"] = json_encode($params["PhoneNumberJson"], JSON_UNESCAPED_UNICODE);
-
         if (!empty($params["SmsUpExtendCodeJson"] && is_array($params["SmsUpExtendCodeJson"]))) {
             $params["SmsUpExtendCodeJson"] = json_encode($params["SmsUpExtendCodeJson"], JSON_UNESCAPED_UNICODE);
         }
-
         // 此处可能会抛出异常，注意catch
         $content = $this->request(
             $accessKeyId,
@@ -145,6 +134,30 @@ class AliyunGateway extends Gateway
                 "Version" => "2017-05-25",
             ))
         );
+
+        $response = $content;
+
+        if ($response->Code === "InvalidAccessKeyId.NotFound") {
+            $response->Message = '阿里短信 accessKeyId 不正确，无效的访问密钥';
+        }
+        if ($response->Code === 'SignatureDoesNotMatch') {
+            $response->Message = '阿里短信 accessKeySecret 不正确，签名不匹配';
+        }
+        if ($response->Code === 'isv.SMS_SIGNATURE_ILLEGAL') {
+            $response->Message = '阿里短信 signName 不正确，签名不合法(不存在或被拉黑';
+        }
+        if ($response->Code === 'isv.SMS_TEMPLATE_ILLEGAL') {
+            $response->Message = $templateCode . $response->Message;
+        }
+        if ($response->Code === 'isv.TEMPLATE_MISSING_PARAMETERS') {
+            $response->Message = $templateCode . $response->Message;
+        }
+        if ($response->Code === 'isv.MOBILE_NUMBER_ILLEGAL') {
+            $response->Message = $phoneNumbers . '手机号无效';
+        }
+        if ($response->Code === 'isv.BUSINESS_LIMIT_CONTROL') {
+            $response->Message = '阿里短信业务限流：将短信发送频率限制在正常的业务流控范围内，默认流控：短信验证码 ：使用同一个签名，对同一个手机号码发送短信验证码，支持1条/分钟，5条/小时 ，累计10条/天。参考网址：https://help.aliyun.com/knowledge_detail/57710.html';
+        }
 
         return $content;
     }

@@ -52,54 +52,18 @@ class Sms
     {
         $config = $this->config['aliyun'];
 
-        $accessKeyId = $config['accessKeyId'];
-        $accessKeySecret = $config['accessKeySecret'];
-        $signName = $config['signName'];
-
-        if (empty($accessKeyId)) {
-            return $this->result('1', '阿里短信 accessKeyId 不能为空，请填写 accessKeyId ！');
-        }
-        if (empty($accessKeySecret)) {
-            return $this->result('1', '阿里短信 accessKeySecret 不能为空，请填写 accessKeySecret ！');
-        }
-        if (empty($signName)) {
-            return $this->result('1', '阿里短信签名不能为空，请填写短信签名 ！');
-        }
-
-        $smsObj = new AliyunGateway($accessKeyId, $accessKeySecret, $signName);
+        $smsObj = new AliyunGateway($config);
 
         if (!empty($phoneNumbers) && !is_array($phoneNumbers)) {
-            $response = $smsObj->sendSms(
-                $phoneNumbers,
-                $templateCode,
-                $templateParam
-            );
+            $response = $smsObj->sendSms($phoneNumbers, $templateCode, $templateParam);
         } else {
-            $response = $smsObj->sendBatchSms(
-                $phoneNumbers,
-                $templateCode,
-                $templateParam
-            );
+            $response = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
         }
 
         if ($response->Code === 'OK') {
             return $this->result('0', '发送成功');
-        } elseif ($response->Code === "InvalidAccessKeyId.NotFound") {
-            return $this->result('1', '阿里短信 accessKeyId 不正确，无效的访问密钥', json_encode($response, JSON_UNESCAPED_UNICODE));
-        } elseif ($response->Code === 'SignatureDoesNotMatch') {
-            return $this->result('1', '阿里短信 accessKeySecret 不正确，签名不匹配', json_encode($response, JSON_UNESCAPED_UNICODE));
-        } elseif ($response->Code === 'isv.SMS_SIGNATURE_ILLEGAL') {
-            return $this->result('1', '阿里短信 signName 不正确，签名不合法(不存在或被拉黑)', json_encode($response, JSON_UNESCAPED_UNICODE));
-        } elseif ($response->Code === 'isv.SMS_TEMPLATE_ILLEGAL') {
-            return $this->result('1', $templateCode . $response->Message, json_encode($response, JSON_UNESCAPED_UNICODE));
-        } elseif ($response->Code === 'isv.TEMPLATE_MISSING_PARAMETERS') {
-            return $this->result('1', $templateCode . $response->Message, json_encode($response, JSON_UNESCAPED_UNICODE));
-        } elseif ($response->Code === 'isv.MOBILE_NUMBER_ILLEGAL') {
-            return $this->result('1', $phoneNumbers . '手机号无效', json_encode($response, JSON_UNESCAPED_UNICODE));
-        } elseif ($response->Code === 'isv.BUSINESS_LIMIT_CONTROL') {
-            return $this->result('1', '阿里短信业务限流：将短信发送频率限制在正常的业务流控范围内，默认流控：短信验证码 ：使用同一个签名，对同一个手机号码发送短信验证码，支持1条/分钟，5条/小时 ，累计10条/天。参考网址：https://help.aliyun.com/knowledge_detail/57710.html', json_encode($response, JSON_UNESCAPED_UNICODE));
         } else {
-            return $this->result('1', '错误码：' . $response->Code . ' 描述：' . $response->Message . ' 短信接口调用错误码查询网址：https://help.aliyun.com/knowledge_detail/57717.html', json_encode($response, JSON_UNESCAPED_UNICODE));
+            return $this->result('1', $response->Message, json_encode($response, JSON_UNESCAPED_UNICODE));
         }
     }
 
@@ -146,11 +110,7 @@ class Sms
     {
         $config = $this->config['qcloud'];
 
-        $appid = $config['appid'];
-        $appkey = $config['appkey'];
-        $smsSign = $config['smsSign'];
-
-        $smsObj = new QcloudGateway($appid, $appkey, $smsSign);
+        $smsObj = new QcloudGateway($config);
 
         if (!empty($phoneNumbers) && !is_array($phoneNumbers)) {
             $result = $smsObj->send($phoneNumbers, $templateCode, $templateParam);

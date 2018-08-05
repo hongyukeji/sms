@@ -12,11 +12,11 @@ class QcloudGateway extends Gateway
     protected $appkey;
     protected $smsSign;
 
-    public function __construct($appid, $appkey, $smsSign)
+    public function __construct($config)
     {
-        $this->appid = $appid;
-        $this->appkey = $appkey;
-        $this->smsSign = $smsSign;
+        $this->appid = $config['appid'];
+        $this->appkey = $config['appkey'];
+        $this->smsSign = $config['smsSign'];
     }
 
     public function send($phoneNumbers, $templateCode, $templateParam)
@@ -28,7 +28,7 @@ class QcloudGateway extends Gateway
         $appkey = $this->appkey;
 
         // 需要发送短信的手机号码
-        $phoneNumbers = $phoneNumbers;
+        $mobile = $phoneNumbers;
 
         // 短信模板ID，需要在短信应用中申请
         $templateId = $templateCode;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
@@ -40,7 +40,7 @@ class QcloudGateway extends Gateway
         try {
             $ssender = new SmsSingleSender($appid, $appkey);
             $params = $templateParam;
-            $result = $ssender->sendWithParam("86", $phoneNumbers, $templateId, $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
+            $result = $ssender->sendWithParam("86", $mobile, $templateId, $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
             $rsp = json_decode($result);
             //echo $result;
         } catch (\Exception $e) {
@@ -59,7 +59,7 @@ class QcloudGateway extends Gateway
         $appkey = $this->appkey;
 
         // 需要发送短信的手机号码
-        $phoneNumbers = $phoneNumbers;
+        $mobile = $phoneNumbers;
 
         // 短信模板ID，需要在短信应用中申请
         $templateId = $templateCode;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
@@ -70,7 +70,7 @@ class QcloudGateway extends Gateway
         try {
             $msender = new SmsMultiSender($appid, $appkey);
             $params = $templateParam;
-            $result = $msender->sendWithParam("86", $phoneNumbers,
+            $result = $msender->sendWithParam("86", $mobile,
                 $templateId, $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
             $rsp = json_decode($result);
             //echo $result;
