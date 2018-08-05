@@ -10,7 +10,6 @@ class HttpClient
 
     public function post($method, $url, $header, $param)
     {
-
         $header = !empty($header) ? $header : 'Content-type: application/x-www-form-urlencoded ';
         $options = array(
             'http' => array(
