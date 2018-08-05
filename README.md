@@ -43,6 +43,10 @@ $ composer require hongyukeji/sms
 
 ## 使用
 
+> PHP框架中使用，配置文件参考 'docs/config/config.php' 
+
+> 短信发送参数详解: send([参数1-手机号: 支持字符串和数组格式],[参数2-模板: 支持模板Code和模板内容],[参数3-模板参数: 模板对应的参数, 数组格式],[参数4-短信服务商: 设置短信发送运营商, 为空时调用配置文件中默认短信服务商])
+
 ```php
 use HongYuKeJi\Helpers\Sms;
 
