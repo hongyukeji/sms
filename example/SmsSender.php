@@ -16,6 +16,7 @@ use HongYuKeJi\Helpers\Sms;
 
 require_once dirname(__FILE__) . '/../src/Sms.php';
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
+(new \Dotenv\Dotenv(__DIR__ . '/../'))->load();
 
 $config = [
     'default' => [
@@ -69,6 +70,6 @@ var_dump($resultTemplateCode);*/
 $resultTemplateContent = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
     'code' => '1234',
     'time' => '15分钟',
-], 'sendcloud');
+], 'aliyun');
 
 var_dump($resultTemplateContent);

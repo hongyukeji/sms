@@ -2,6 +2,8 @@
 
 namespace HongYuKeJi\Helpers\Tests;
 
+(new \Dotenv\Dotenv(__DIR__ . '/../'))->load();
+
 use HongYuKeJi\Helpers\Sms;
 use HongYuKeJi\Helpers\Tests\TestCase;
 
