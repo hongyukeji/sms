@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/../src/Sms.php';
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/config.php';
+require_once dirname(__FILE__) . '/../src/Sms.php';
 
 use HongYuKeJi\Helpers\Sms;
 

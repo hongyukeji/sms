@@ -4,9 +4,9 @@ namespace HongYuKeJi\Helpers\Tests;
 
 require_once dirname(__FILE__) . '/../example/config.php';
 
+use HongYuKeJi\Helpers\Sms;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use HongYuKeJi\Helpers\Sms;
 use HongYuKeJi\Helpers\Tests\TestCase;
 
 class SmsTest extends TestCase
