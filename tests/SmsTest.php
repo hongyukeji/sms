@@ -56,8 +56,8 @@ class SmsTest extends TestCase
                     ],
                 ],
                 'sendcloud' => [
-                    'sms_user' => '213',
-                    'sms_key' => '3213',
+                    'sms_user' => '',
+                    'sms_key' => '',
                 ],
                 'ihuyi' => [
                     'apiid' => '',
