@@ -104,7 +104,7 @@ var_dump($resultTemplateContent);
 
 ## 配置
 
-- 阿里云
+- [阿里云](https://www.aliyun.com)
 
 > 使用说明：templateCode + templateParam
 
@@ -116,7 +116,7 @@ var_dump($resultTemplateContent);
 ],
 ```
 
-- 云片网
+- [云片网](https://www.yunpian.com)
 
 > 使用说明：templateCode + templateParam
 
@@ -126,7 +126,7 @@ var_dump($resultTemplateContent);
 ],
 ```
 
-- 腾讯云
+- [腾讯云](https://cloud.tencent.com/product/sms)
 
 > 使用说明：templateCode + templateParam
 
@@ -138,7 +138,7 @@ var_dump($resultTemplateContent);
 ],
 ```
 
-- 短信宝
+- [短信宝](http://www.smsbao.com)
 
 > 使用说明：templateContent + templateParam
 
@@ -150,7 +150,7 @@ var_dump($resultTemplateContent);
 ],
 ```
 
-- 赛邮云
+- [赛邮云](https://www.mysubmail.com)
 
 > 使用说明：templateCode + templateParam
 
@@ -161,7 +161,7 @@ var_dump($resultTemplateContent);
 ],
 ```
 
-- SendCloud
+- [SendCloud](https://www.sendcloud.net)
 
 > 使用说明：templateCode + templateParam
 
@@ -172,7 +172,7 @@ var_dump($resultTemplateContent);
 ],
 ```
 
-- 互亿无线
+- [互亿无线](http://www.ihuyi.com)
 
 > 使用说明：templateContent + templateParam
 

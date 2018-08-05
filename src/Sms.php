@@ -251,6 +251,14 @@ class Sms
         }
     }
 
+    /**
+     * Sendcloud
+     * @see https://www.sendcloud.net/doc/sms/
+     * @param $phoneNumbers
+     * @param $templateCode
+     * @param $templateParam
+     * @return array
+     */
     public function sendcloud($phoneNumbers, $templateCode, $templateParam)
     {
         $config = $this->config['sendcloud'];
@@ -263,10 +271,22 @@ class Sms
             $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
         }
 
-        // TODO: 待处理返回数据判断
-        return $result;
+        if (json_decode($result, true)['statusCode'] == '200') {
+            return $this->result('0', '发送成功');
+        } else {
+            return $this->result('1', json_decode($result, true)['message'], $result);
+        }
     }
 
+    /**
+     * 互亿无线
+     * @see http://www.ihuyi.com/demo/sms/php.html
+     *
+     * @param $phoneNumbers
+     * @param $templateCode
+     * @param $templateParam
+     * @return array
+     */
     public function ihuyi($phoneNumbers, $templateCode, $templateParam)
     {
         $config = $this->config['ihuyi'];

@@ -76,7 +76,7 @@ $sms = new Sms($config);
 var_dump($resultTemplateCode);*/
 
 // Content + templateParam
-$resultTemplateContent = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
+$resultTemplateContent = $sms->send('13800138000', '11111', [
     'code' => '1234',
     'time' => '15分钟',
 ], 'sendcloud');
