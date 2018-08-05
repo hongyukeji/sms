@@ -79,6 +79,6 @@ var_dump($resultTemplateCode);*/
 $resultTemplateContent = $sms->send('13800138000', '您的验证码是%s。有效期为%s，请尽快验证！', [
     'code' => '1234',
     'time' => '15分钟',
-], 'aliyun');
+], 'sendcloud');
 
 var_dump($resultTemplateContent);
