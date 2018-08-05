@@ -1,16 +1,4 @@
 <?php
-/**
- * sms
- * ============================================================================
- * Copyright © 2015-2018 HongYuKeJi.Co.Ltd. All rights reserved.
- * Http://www.hongyuvip.com
- * ----------------------------------------------------------------------------
- * 堂堂正正做人，踏踏实实做事。
- * ----------------------------------------------------------------------------
- * Author: Shadow  QQ: 1527200768  Time: 2018/08/02 20:32
- * E-mail: admin@hongyuvip.com
- * ============================================================================
- */
 
 namespace HongYuKeJi\Helpers;
 
@@ -30,11 +18,9 @@ class Sms
     public function __construct($config)
     {
         $this->config = $config['gateways'];
-        // 默认短信存在时采用默认短信网关
         if (!empty($config['default']['gateway'])) {
             $this->defaultGateway = $config['default']['gateway'];
         }
-        // 判断默认短信名称对应的配置项是否存在
         if (!empty($this->defaultGateway) && !empty($this->config) && !array_key_exists($this->defaultGateway, $this->config)) {
             $this->defaultGateway = null;
         }
@@ -54,7 +40,7 @@ class Sms
     }
 
     /**
-     * 阿里短信
+     * 阿里云短信
      * @see https://help.aliyun.com/document_detail/55451.html
      *
      * @param $phoneNumbers
@@ -118,7 +104,7 @@ class Sms
     }
 
     /**
-     * 云片短信
+     * 云片网短信
      * @see https://www.yunpian.com/doc/zh_CN/returnValue/example.html
      *
      * @param $phoneNumbers
@@ -223,7 +209,7 @@ class Sms
     }
 
     /**
-     * SUBMAIL赛邮短信
+     * 赛邮云短信
      *
      * @see https://www.mysubmail.com/chs/documents/developer/index
      *
@@ -252,7 +238,7 @@ class Sms
     }
 
     /**
-     * Sendcloud
+     * SendCloud短信
      * @see https://www.sendcloud.net/doc/sms/
      * @param $phoneNumbers
      * @param $templateCode
@@ -279,7 +265,7 @@ class Sms
     }
 
     /**
-     * 互亿无线
+     * 互亿无线短信
      * @see http://www.ihuyi.com/demo/sms/php.html
      *
      * @param $phoneNumbers
