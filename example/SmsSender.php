@@ -25,3 +25,9 @@ $resultTemplateContent = $sms->send(['13800138000', '13900139000'], '您的验�
 ], 'duanxinbao');
 
 var_dump($resultTemplateContent);
+
+// 返回值
+$result = [
+    'statusCode' => '0',
+    'message' => '短信发送成功！',
+];

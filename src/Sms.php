@@ -61,7 +61,7 @@ class Sms
         }
 
         if ($response->Code === 'OK') {
-            return $this->result('0', '发送成功');
+            return $this->result('0');
         } else {
             return $this->result('1', $response->Message, json_encode($response, JSON_UNESCAPED_UNICODE));
         }
@@ -90,7 +90,7 @@ class Sms
         $response = $smsObj->sendSms($templateCode, $phoneNumbers, $templateParam);
 
         if ($response['code'] == '0') {
-            return $this->result('0', '发送成功');
+            return $this->result('0');
         } else {
             return $this->result('1', $response['msg'], json_encode($response, JSON_UNESCAPED_UNICODE));
         }
@@ -121,7 +121,7 @@ class Sms
         $resultItem = json_decode($result, true);
 
         if ($resultItem['result'] == '0') {
-            return $this->result('0', '发送成功');
+            return $this->result('0');
         } else {
             return $this->result('1', $resultItem['errmsg'], $result);
         }
@@ -150,7 +150,7 @@ class Sms
         }
 
         if ($result['statusCode'] == '0') {
-            return $this->result('0', '发送成功');
+            return $this->result('0');
         } else {
             return $this->result('1', $result['message'], json_encode($result, JSON_UNESCAPED_UNICODE));
         }
@@ -179,7 +179,7 @@ class Sms
         }
 
         if ($result['status'] == 'success') {
-            return $this->result('0', '发送成功');
+            return $this->result('0');
         } else {
             return $this->result('1', '错误代码：' . $result['code'] . ' 描述：' . $result['msg'], json_encode($result, JSON_UNESCAPED_UNICODE));
         }
@@ -206,7 +206,7 @@ class Sms
         }
 
         if (json_decode($result, true)['statusCode'] == '200') {
-            return $this->result('0', '发送成功');
+            return $this->result('0');
         } else {
             return $this->result('1', json_decode($result, true)['message'], $result);
         }
@@ -234,13 +234,13 @@ class Sms
         }
 
         if ($result['SubmitResult']['code'] == '2') {
-            return $this->result('0', '发送成功');
+            return $this->result('0');
         } else {
             return $this->result('1', $result['SubmitResult']['msg'], json_encode($result, JSON_UNESCAPED_UNICODE));
         }
     }
 
-    public function result($statusCode, $message, $data = null)
+    public function result($statusCode, $message = '短信发送成功！', $data = null)
     {
         $result = [
             'statusCode' => $statusCode,
