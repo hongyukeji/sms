@@ -1,10 +1,10 @@
 <?php
 
-use HongYuKeJi\Helpers\Sms;
-
 require_once dirname(__FILE__) . '/../src/Sms.php';
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/config.php';
+
+use HongYuKeJi\Helpers\Sms;
 
 $config = $configs;
 
