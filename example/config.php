@@ -5,7 +5,6 @@
 $configs = [
     'default' => [
         'gateway' => 'aliyun',
-        //'returnDataType' => 'json',   // 默认返回数组格式
     ],
     'gateways' => [
         'aliyun' => [

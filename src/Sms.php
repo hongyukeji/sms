@@ -14,7 +14,6 @@ class Sms
 {
     protected $config;
     protected $defaultGateway;
-    protected $returnDataType = 'array';
 
     public function __construct($config)
     {
@@ -24,9 +23,6 @@ class Sms
         }
         if (!empty($this->defaultGateway) && !empty($this->config) && !array_key_exists($this->defaultGateway, $this->config)) {
             $this->defaultGateway = null;
-        }
-        if (!empty($config['default']['returnDataType'])) {
-            $this->returnDataType = $config['default']['returnDataType'];
         }
     }
 
@@ -253,10 +249,6 @@ class Sms
 
         if (!empty($data)) {
             $result['data'] = $data;
-        }
-
-        if ($this->returnDataType == 'json') {
-            return json_encode($result);
         }
 
         return $result;
