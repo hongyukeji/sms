@@ -73,6 +73,14 @@ $config = [
             'appid' => '',
             'appkey' => '',
         ],
+        'sendcloud' => [
+            'sms_user' => '',
+            'sms_key' => '',
+        ],
+        'ihuyi' => [
+            'apiid' => '',
+            'apikey' => '',
+        ],
     ],
 ];
 
