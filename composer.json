@@ -1,6 +1,6 @@
 {
   "name": "hongyukeji/sms",
-  "description": "Support the whole network SMS sending, free expansion, seamless docking.",
+  "description": "SMS sent, never so simple.",
   "keywords": ["sms", "php-sms", "laravel-sms", "yii-sms", "thinkphp-sms"],
   "type": "library",
   "license": "MIT",
