@@ -52,7 +52,7 @@ use HongYuKeJi\Helpers\Sms;
 
 $config = [
     'default' => [
-        'gateway' => 'yunpian',
+        'gateway' => 'aliyun',
     ],
     'gateways' => [
         'yunpian' => [

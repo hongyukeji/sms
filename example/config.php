@@ -4,22 +4,22 @@
 
 $configs = [
     'default' => [
-        'gateway' => 'yunpian',
+        'gateway' => 'aliyun',
     ],
     'gateways' => [
-        'yunpian' => [
-            'apikey' => getenv('YUNPIAN_APIKEY'),
-            'templateCode' => [
-                // 您的验证码是#code#。有效期为#time#，请尽快验证！
-                'verificationCode' => '',
-            ],
-        ],
         'aliyun' => [
             'accessKeyId' => getenv('ALIYUN_ACCESSKEYID'),
             'accessKeySecret' => getenv('ALIYUN_ACCESSKEYSECRET'),
             'signName' => getenv('ALIYUN_SIGNNAME'),
             'templateCode' => [
                 // 您的验证码是${code}。有效期为${time}，请尽快验证！
+                'verificationCode' => '',
+            ],
+        ],
+        'yunpian' => [
+            'apikey' => getenv('YUNPIAN_APIKEY'),
+            'templateCode' => [
+                // 您的验证码是#code#。有效期为#time#，请尽快验证！
                 'verificationCode' => '',
             ],
         ],
