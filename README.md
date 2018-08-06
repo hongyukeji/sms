@@ -122,7 +122,7 @@ $result = [
 
 ## 配置
 
-- [阿里云](https://www.aliyun.com)
+- [阿里云](https://help.aliyun.com/document_detail/55451.html)
 
 > 使用说明：templateCode + templateParam
 
@@ -134,7 +134,7 @@ $result = [
 ],
 ```
 
-- [云片网](https://www.yunpian.com)
+- [云片网](https://www.yunpian.com/doc/zh_CN/introduction/demos/php.html)
 
 > 使用说明：templateCode + templateParam
 
@@ -144,7 +144,7 @@ $result = [
 ],
 ```
 
-- [腾讯云](https://cloud.tencent.com/product/sms)
+- [腾讯云](https://cloud.tencent.com/document/product/382/9557)
 
 > 使用说明：templateCode + templateParam
 
@@ -156,7 +156,7 @@ $result = [
 ],
 ```
 
-- [短信宝](http://www.smsbao.com)
+- [短信宝](http://www.smsbao.com/openapi/55.html)
 
 > 使用说明：templateContent + templateParam
 
@@ -168,7 +168,7 @@ $result = [
 ],
 ```
 
-- [赛邮云](https://www.mysubmail.com)
+- [赛邮云](https://www.mysubmail.com/chs/documents/developer/t2f1J2)
 
 > 使用说明：templateCode + templateParam
 
@@ -179,7 +179,7 @@ $result = [
 ],
 ```
 
-- [SendCloud](https://www.sendcloud.net)
+- [SendCloud](https://www.sendcloud.net/doc/sms)
 
 > 使用说明：templateCode + templateParam
 
@@ -190,7 +190,7 @@ $result = [
 ],
 ```
 
-- [互亿无线](http://www.ihuyi.com)
+- [互亿无线](http://www.ihuyi.com/demo/sms/php.html)
 
 > 使用说明：templateContent + templateParam
 

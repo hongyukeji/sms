@@ -69,7 +69,7 @@ class Sms
 
     /**
      * 云片网短信
-     * @see https://www.yunpian.com/doc/zh_CN/returnValue/example.html
+     * @see https://www.yunpian.com/doc/zh_CN/introduction/demos/php.html
      *
      * @param $phoneNumbers
      * @param $templateCode
