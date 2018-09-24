@@ -11,14 +11,14 @@ $config = [
             'signName' => '',
             'templateCode' => [
                 // 您的验证码是${code}。有效期为${time}，请尽快验证！
-                'verificationCode' => 'SMS_88888888',
+                'verifyCode' => 'SMS_88888888',
             ],
         ],
         'yunpian' => [
             'apikey' => '',
             'templateCode' => [
                 // 您的验证码是#code#。有效期为#time#，请尽快验证！
-                'verificationCode' => '',
+                'verifyCode' => '',
             ],
         ],
         'qcloud' => [
@@ -26,7 +26,7 @@ $config = [
             'appkey' => '',
             'smsSign' => '',
             'templateCode' => [
-                'verificationCode' => '',
+                'verifyCode' => '',
             ],
         ],
         'duanxinbao' => [
@@ -34,21 +34,21 @@ $config = [
             'pass' => '',
             'signName' => '',
             'templateCode' => [
-                'verificationCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
+                'verifyCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
             ],
         ],
         'submail' => [
             'appid' => '',
             'appkey' => '',
             'templateCode' => [
-                'verificationCode' => '',
+                'verifyCode' => '',
             ],
         ],
         'sendcloud' => [
             'sms_user' => '',
             'sms_key' => '',
             'templateCode' => [
-                'verificationCode' => '',
+                'verifyCode' => '',
             ],
         ],
         'ihuyi' => [
@@ -56,7 +56,7 @@ $config = [
             'apikey' => '',
             'templateCode' => [
                 // 您的验证码是【变量】。有效期为【变量】，请尽快验证！
-                'verificationCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
+                'verifyCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
             ],
         ],
     ],
