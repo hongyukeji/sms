@@ -243,7 +243,7 @@ class Sms
     public function result($statusCode, $message = '短信发送成功！', $data = null)
     {
         $result = [
-            'statusCode' => $statusCode,
+            'status' => $statusCode,
             'message' => $message,
         ];
 
