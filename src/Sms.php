@@ -63,7 +63,7 @@ class Sms
         if ($response->Code === 'OK') {
             return $this->result('0');
         } else {
-            return $this->result('1', $response->Message, json_encode($response, JSON_UNESCAPED_UNICODE));
+            return $this->result('1', $response->Message, $response);
         }
     }
 
@@ -92,7 +92,7 @@ class Sms
         if ($response['code'] == '0') {
             return $this->result('0');
         } else {
-            return $this->result('1', $response['msg'], json_encode($response, JSON_UNESCAPED_UNICODE));
+            return $this->result('1', $response['msg'], $response);
         }
     }
 
@@ -118,12 +118,12 @@ class Sms
             $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
         }
 
-        $resultItem = json_decode($result, true);
+        $response = json_decode($result, true);
 
-        if ($resultItem['result'] == '0') {
+        if ($response['result'] == '0') {
             return $this->result('0');
         } else {
-            return $this->result('1', $resultItem['errmsg'], $result);
+            return $this->result('1', $response['errmsg'], $response);
         }
 
     }
@@ -152,7 +152,7 @@ class Sms
         if ($result['status'] == '0') {
             return $this->result('0');
         } else {
-            return $this->result('1', $result['message'], json_encode($result, JSON_UNESCAPED_UNICODE));
+            return $this->result('1', $result['message'], $result);
         }
     }
 
@@ -181,7 +181,7 @@ class Sms
         if ($result['status'] == 'success') {
             return $this->result('0');
         } else {
-            return $this->result('1', '错误代码：' . $result['code'] . ' 描述：' . $result['msg'], json_encode($result, JSON_UNESCAPED_UNICODE));
+            return $this->result('1', '错误代码：' . $result['code'] . ' 描述：' . $result['msg'], $result);
         }
     }
 
@@ -205,10 +205,12 @@ class Sms
             $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
         }
 
-        if (json_decode($result, true)['status'] == '200') {
+        $response = json_decode($result, true);
+
+        if ($response['status'] == '200') {
             return $this->result('0');
         } else {
-            return $this->result('1', json_decode($result, true)['message'], $result);
+            return $this->result('1', $response['message'], $response);
         }
     }
 
@@ -236,14 +238,14 @@ class Sms
         if ($result['SubmitResult']['code'] == '2') {
             return $this->result('0');
         } else {
-            return $this->result('1', $result['SubmitResult']['msg'], json_encode($result, JSON_UNESCAPED_UNICODE));
+            return $this->result('1', $result['SubmitResult']['msg'], $result);
         }
     }
 
     public function result($status, $message = '短信发送成功！', $data = null)
     {
         $result = [
-            'status' => $status,
+            'status'  => $status,
             'message' => $message,
         ];
 
