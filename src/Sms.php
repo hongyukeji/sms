@@ -63,7 +63,7 @@ class Sms
         if ($response->Code === 'OK') {
             return $this->result('0');
         } else {
-            return $this->result('1', $response->Message, $response);
+            return $this->result('1', $response->Message, get_object_vars($response));
         }
     }
 
