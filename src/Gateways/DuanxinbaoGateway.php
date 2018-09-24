@@ -42,7 +42,7 @@ class DuanxinbaoGateway extends Gateway
         $result = file_get_contents($sendurl);
 
         $response = [
-            'statusCode' => $result,
+            'status' => $result,
             'message' => $this->statusStr[$result],
         ];
 
@@ -64,7 +64,7 @@ class DuanxinbaoGateway extends Gateway
         }
 
         $response = [
-            'statusCode' => $result,
+            'status' => $result,
             'message' => $this->statusStr[$result],
         ];
 

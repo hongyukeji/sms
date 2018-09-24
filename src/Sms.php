@@ -149,7 +149,7 @@ class Sms
             $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
         }
 
-        if ($result['statusCode'] == '0') {
+        if ($result['status'] == '0') {
             return $this->result('0');
         } else {
             return $this->result('1', $result['message'], json_encode($result, JSON_UNESCAPED_UNICODE));
@@ -205,7 +205,7 @@ class Sms
             $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
         }
 
-        if (json_decode($result, true)['statusCode'] == '200') {
+        if (json_decode($result, true)['status'] == '200') {
             return $this->result('0');
         } else {
             return $this->result('1', json_decode($result, true)['message'], $result);
@@ -240,10 +240,10 @@ class Sms
         }
     }
 
-    public function result($statusCode, $message = '短信发送成功！', $data = null)
+    public function result($status, $message = '短信发送成功！', $data = null)
     {
         $result = [
-            'status' => $statusCode,
+            'status' => $status,
             'message' => $message,
         ];
 

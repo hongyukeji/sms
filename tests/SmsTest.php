@@ -80,7 +80,7 @@ class SmsTest extends TestCase
         $this->log()->info('result', $result);
 
         $this->assertEquals(0, 0);
-        //$this->assertEquals(0, $result['statusCode']);
+        //$this->assertEquals(0, $result['status']);
     }
 
     public function testPushAndPop()
