@@ -106,9 +106,9 @@ $resultTemplateContent = $sms->send(['13800138000', '13900139000'], '您的验�
 
 var_dump($resultTemplateContent);
 
-// return 返回值 status: 0-发送成功, 1-发送失败
+// return 返回值 status: success => 发送成功, fail => 发送失败
 $result = [
-    'status' => '0',
+    'status' => 'success',
     'message' => '短信发送成功！',
 ];
 ```

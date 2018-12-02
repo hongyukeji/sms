@@ -15,6 +15,9 @@ class Sms
     protected $config;
     protected $defaultGateway;
 
+    const STATUS_SUCCESS = 'success';
+    const STATUS_FAIL = 'fail';
+
     public function __construct($config)
     {
         $this->config = $config['gateways'];
@@ -28,15 +31,19 @@ class Sms
 
     public function send($phoneNumbers, $templateCode, $templateParam = [], $gateway = null)
     {
-        $defaultGateway = $this->defaultGateway;
-        if (!empty($gateway) || empty($defaultGateway)) {
-            $defaultGateway = $gateway;
+        try {
+            $defaultGateway = $this->defaultGateway;
+            if (!empty($gateway) || empty($defaultGateway)) {
+                $defaultGateway = $gateway;
+            }
+            if (empty($gateway) && empty($defaultGateway)) {
+                $gateways       = array_keys($this->config);
+                $defaultGateway = reset($gateways);
+            }
+            return $this->$defaultGateway($phoneNumbers, $templateCode, $templateParam);
+        } catch (\Exception $e) {
+            return $this->result(self::STATUS_FAIL, $e->getMessage());
         }
-        if (empty($gateway) && empty($defaultGateway)) {
-            $gateways = array_keys($this->config);
-            $defaultGateway = reset($gateways);
-        }
-        return $this->$defaultGateway($phoneNumbers, $templateCode, $templateParam);
     }
 
     /**
@@ -61,9 +68,9 @@ class Sms
         }
 
         if ($response->Code === 'OK') {
-            return $this->result('0');
+            return $this->result(self::STATUS_SUCCESS);
         } else {
-            return $this->result('1', $response->Message, get_object_vars($response));
+            return $this->result(self::STATUS_FAIL, $response->Message, get_object_vars($response));
         }
     }
 
@@ -78,7 +85,7 @@ class Sms
      */
     public function yunpian($phoneNumbers, $templateCode, $templateParam)
     {
-        $config = $this->config['yunpian'];
+        $config          = $this->config['yunpian'];
         $config['batch'] = false;
 
         if (is_array($phoneNumbers)) {
@@ -90,9 +97,9 @@ class Sms
         $response = $smsObj->sendSms($templateCode, $phoneNumbers, $templateParam);
 
         if ($response['code'] == '0') {
-            return $this->result('0');
+            return $this->result(self::STATUS_SUCCESS);
         } else {
-            return $this->result('1', $response['msg'], $response);
+            return $this->result(self::STATUS_FAIL, $response['msg'], $response);
         }
     }
 
@@ -121,9 +128,9 @@ class Sms
         $response = json_decode($result, true);
 
         if ($response['result'] == '0') {
-            return $this->result('0');
+            return $this->result(self::STATUS_SUCCESS);
         } else {
-            return $this->result('1', $response['errmsg'], $response);
+            return $this->result(self::STATUS_FAIL, $response['errmsg'], $response);
         }
 
     }
@@ -150,9 +157,9 @@ class Sms
         }
 
         if ($result['status'] == '0') {
-            return $this->result('0');
+            return $this->result(self::STATUS_SUCCESS);
         } else {
-            return $this->result('1', $result['message'], $result);
+            return $this->result(self::STATUS_FAIL, $result['message'], $result);
         }
     }
 
@@ -179,9 +186,9 @@ class Sms
         }
 
         if ($result['status'] == 'success') {
-            return $this->result('0');
+            return $this->result(self::STATUS_SUCCESS);
         } else {
-            return $this->result('1', '错误代码：' . $result['code'] . ' 描述：' . $result['msg'], $result);
+            return $this->result(self::STATUS_FAIL, '错误代码：' . $result['code'] . ' 描述：' . $result['msg'], $result);
         }
     }
 
@@ -208,9 +215,9 @@ class Sms
         $response = json_decode($result, true);
 
         if ($response['status'] == '200') {
-            return $this->result('0');
+            return $this->result(self::STATUS_SUCCESS);
         } else {
-            return $this->result('1', $response['message'], $response);
+            return $this->result(self::STATUS_FAIL, $response['message'], $response);
         }
     }
 
@@ -236,9 +243,9 @@ class Sms
         }
 
         if ($result['SubmitResult']['code'] == '2') {
-            return $this->result('0');
+            return $this->result(self::STATUS_SUCCESS);
         } else {
-            return $this->result('1', $result['SubmitResult']['msg'], $result);
+            return $this->result(self::STATUS_FAIL, $result['SubmitResult']['msg'], $result);
         }
     }
 
