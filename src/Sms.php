@@ -249,6 +249,40 @@ class Sms
         }
     }
 
+    /**
+     * 创蓝253
+     * @see https://zz.253.com/api_doc
+     *
+     * @param $phoneNumbers
+     * @param $templateCode
+     * @param $templateParam
+     * @return array
+     */
+    public function chuanglan($phoneNumbers, $templateCode, $templateParam)
+    {
+        $config = $this->config['chuanglan'];
+
+        $smsObj = new ChuanglanGateway($config);
+
+        if (!empty($phoneNumbers) && !is_array($phoneNumbers)) {
+            $result = $smsObj->send($phoneNumbers, $templateCode, $templateParam);
+        } else {
+            $result = $smsObj->sendBatchSms($phoneNumbers, $templateCode, $templateParam);
+        }
+
+        // {"code":"0","failNum":"0","successNum":"1","msgId":"19101318284626959","time":"20191013182846","errorMsg":""}
+        if (!is_null(json_decode($result))) {
+            $output = json_decode($result, true);
+            if (isset($output['code']) && $output['code'] == '0') {
+                return $this->result(self::STATUS_SUCCESS);
+            } else {
+                return $this->result(self::STATUS_FAIL, isset($output['errorMsg']) ? $output['errorMsg'] : (isset($output['message']) ? $output['message'] : ''), $result);
+            }
+        } else {
+            return $this->result(self::STATUS_FAIL, '短信发送失败！', $result);
+        }
+    }
+
     public function result($status, $message = '短信发送成功！', $data = null)
     {
         $result = [

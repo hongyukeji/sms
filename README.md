@@ -27,6 +27,7 @@
 - [赛邮云](https://www.mysubmail.com)
 - [SendCloud](https://www.sendcloud.net)
 - [互亿无线](http://www.ihuyi.com)
+- [创蓝253](https://www.253.com)
 - 上述短信服务商比较常用，其他短信如有需要可联系[Shadow](http://wpa.qq.com/msgrd?v=3&uin=1527200768&site=qq&menu=yes)集成
 - 如需支持其他短信服务商，可以自行Fork，在`src/Sms.php`中添加对应的短信发送方法即可
 - 短信快速集成（参考[《宏观设计模式》](docs/README.md) — 鸿宇科技出品）
@@ -198,5 +199,20 @@ $result = [
 'ihuyi' => [
     'apiid' => '',
     'apikey' => '',
+],
+```
+
+- [创蓝253](https://zz.253.com/api_doc/)
+
+> 使用说明：templateContent + templateParam
+
+```php
+'chuanglan' => [
+    'api_send_url' => '',
+    'api_variable_url' => '',
+    'api_balance_query_url' => '',
+    'api_account' => '',
+    'api_password' => '',
+    'sms_sign' => '',
 ],
 ```

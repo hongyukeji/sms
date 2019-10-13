@@ -61,5 +61,16 @@ $configs = [
                 'verifyCode' => '您的验证码是%s。有效期为%s，请尽快验证！',
             ],
         ],
+        'chuanglan' => [
+            'api_send_url' => 'http://smssh1.253.com/msg/send/json',
+            'api_variable_url' => 'http://smssh1.253.com/msg/variable/json',
+            'api_balance_query_url' => 'http://smssh1.253.com/msg/balance/json',
+            'api_account' => '',
+            'api_password' => '',
+            'sms_sign' => '',
+            'templateCode' => [
+                'verifyCode' => '您的验证码是{$var}。有效期为15分钟，请尽快验证！',
+            ],
+        ],
     ],
 ];
