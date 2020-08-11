@@ -13,6 +13,8 @@
 
 > 更多请点击 [https://www.hongyuvip.com](https://www.hongyuvip.com)
 
+> 项目迁移至 [https://github.com/hongyukeji/php-sms](https://github.com/hongyukeji/php-sms)
+
 ## 特点
 
 - 支持全网络短信服务商
